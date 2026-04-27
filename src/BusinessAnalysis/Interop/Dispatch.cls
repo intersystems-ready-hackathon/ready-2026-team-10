@@ -35,7 +35,7 @@ ClassMethod ReadCSV() As %Status [ WebMethod ]
         If tBody = "" {
             Set %response.Status = 400
             Write ..ErrorResponse("Request body is required")
-            Quit $$$OK
+            Return $$$OK
         }
 
         Set tJSON = ##class(%DynamicObject).%FromJSON(tBody)
@@ -48,7 +48,7 @@ ClassMethod ReadCSV() As %Status [ WebMethod ]
         If tFileName = "" {
             Set %response.Status = 400
             Write ..ErrorResponse("filepath is required")
-            Quit $$$OK
+            Return $$$OK
         }
 
         Set tRequest = ##class(BusinessAnalysis.Interop.Msg.FileRequest).%New()
@@ -59,7 +59,7 @@ ClassMethod ReadCSV() As %Status [ WebMethod ]
         If $$$ISERR(tSC) {
             Set %response.Status = 500
             Write ..ErrorResponse($SYSTEM.Status.GetErrorText(tSC))
-            Quit $$$OK
+            Return $$$OK
         }
 
         Set tSC = tBusinessSvc.ProcessInput(tRequest, .tOutput)
