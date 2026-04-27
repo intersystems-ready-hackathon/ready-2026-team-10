@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { uploadAndAnalyze } from '../api/analysisApi';
+import { uploadAndAnalyze, ANALYSIS_TYPES } from '../api/analysisApi';
 import ResultPanel from '../components/ResultPanel';
 import styles from './DashboardPage.module.css';
 
@@ -8,6 +8,7 @@ export default function DashboardPage() {
   const { user, logout } = useAuth();
   const [files, setFiles] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
+  const [selectedTypes, setSelectedTypes] = useState([]);
   const [status, setStatus] = useState('idle'); // idle | loading | done | error
   const [result, setResult] = useState('');
   const [errorMsg, setErrorMsg] = useState('');
@@ -36,13 +37,21 @@ export default function DashboardPage() {
     addFiles(Array.from(e.dataTransfer.files));
   }
 
+  function toggleType(id) {
+    setSelectedTypes((prev) =>
+      prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]
+    );
+  }
+
+  const canRun = files.length > 0 && selectedTypes.length > 0 && status !== 'loading';
+
   async function handleAnalyze() {
-    if (files.length === 0) return;
+    if (!canRun) return;
     setStatus('loading');
     setResult('');
     setErrorMsg('');
     try {
-      const data = await uploadAndAnalyze(files);
+      const data = await uploadAndAnalyze(files, selectedTypes);
       setResult(data.result);
       setStatus('done');
     } catch (err) {
@@ -53,6 +62,7 @@ export default function DashboardPage() {
 
   function handleReset() {
     setFiles([]);
+    setSelectedTypes([]);
     setStatus('idle');
     setResult('');
     setErrorMsg('');
@@ -80,6 +90,7 @@ export default function DashboardPage() {
         </div>
 
         <div className={styles.uploadSection}>
+          {/* File drop zone */}
           <div
             className={`${styles.dropzone} ${isDragging ? styles.dragOver : ''}`}
             onDragOver={(e) => { e.preventDefault(); setIsDragging(true); }}
@@ -123,11 +134,39 @@ export default function DashboardPage() {
             </ul>
           )}
 
+          {/* Analysis type selector */}
+          <div className={styles.typesSection}>
+            <p className={styles.typesLabel}>Select analysis types</p>
+            <div className={styles.typesList}>
+              {ANALYSIS_TYPES.map((type) => {
+                const checked = selectedTypes.includes(type.id);
+                return (
+                  <label
+                    key={type.id}
+                    className={`${styles.typeCard} ${checked ? styles.typeCardChecked : ''}`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => toggleType(type.id)}
+                      className={styles.typeCheckbox}
+                    />
+                    <div className={styles.typeCardBody}>
+                      <span className={styles.typeCardLabel}>{type.label}</span>
+                      <span className={styles.typeCardDesc}>{type.description}</span>
+                    </div>
+                  </label>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Actions */}
           <div className={styles.actions}>
             <button
               className={styles.analyzeBtn}
               onClick={handleAnalyze}
-              disabled={files.length === 0 || status === 'loading'}
+              disabled={!canRun}
             >
               {status === 'loading' ? (
                 <>
@@ -138,18 +177,25 @@ export default function DashboardPage() {
                 'Run Analysis'
               )}
             </button>
-            {(files.length > 0 || status !== 'idle') && (
+            {(files.length > 0 || selectedTypes.length > 0 || status !== 'idle') && (
               <button className={styles.resetBtn} onClick={handleReset}>
                 Reset
               </button>
             )}
           </div>
+
+          {files.length > 0 && selectedTypes.length === 0 && status === 'idle' && (
+            <p className={styles.hintText}>Select at least one analysis type to continue.</p>
+          )}
         </div>
 
         {status === 'loading' && (
           <div className={styles.loadingBanner}>
             <span className={styles.spinnerLg} />
-            <span>The AI is analyzing your financial data. This may take a moment...</span>
+            <span>
+              Running {selectedTypes.length} analysis{selectedTypes.length > 1 ? ' types' : ''}
+              {' '}on {files.length} file{files.length > 1 ? 's' : ''}. This may take a moment...
+            </span>
           </div>
         )}
 
