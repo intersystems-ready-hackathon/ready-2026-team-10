@@ -1,12 +1,19 @@
-# TEAM 10 - [ Name of Project ] 
+# TEAM 10 - [ AI Business Analysis] 
 
 ## Project Summary 
 
-[ Add a 1-2 sentence summary of your project here - i,e. what is the high level goal of your project ] 
+This project works as an AI Business Analyzer for your company's data. You can drop a CSV file and select the types of analysis that you would like the LLM to execute. The AI agent will then return a summary for each section selected.
+
+Some of the functionalities are:
+- Auditing
+- Anomaly detection
+- Statistics
 
 ## Technical Details
 
-[ Add details on the technical implementation of your project here ] 
+This application was built with React JS for the Frontend Application. The Backend was built with InterSystems ObjectScript.
+
+The backend was built with a REST endpoint that uses a Dispatch class to then send messages to an IRIS production. The production has a Business Operation that then uses the Agent class to communicate with the LLM.
 
 ## Setup Instructions [Optional]
 
@@ -14,13 +21,9 @@
 
 ## Publicly accessible statement
 
-**Delete as appropriate**: 
 - We are happy for our project to be publicly visable after the event (you will remain repo admins) 
-- We would like our project to be made private at the end of the event
-
 
 # Template Instructions (feel free to delete)
-
 
 This repo provides a template to kickstart development with AI Hub. 
 
@@ -28,6 +31,7 @@ This repo provides a template to kickstart development with AI Hub.
 
 - **./skills** - agent skills with information on using AI hub for AI agents. Move these to a suitable location for your preferred AI coding agent. 
 - **./src/Sample** - Basic sample classes for tools, toolsets, agents and MCP servers. These are installed with zpm when the container is build.  
+- **./src/BusinessAnalysis** - Basic sample classes for tools, toolsets, agents and MCP servers. These are installed with zpm when the container is build.  
 - **./src/Python** - An example stdio MCP server defined in Python and used in the IRIS Toolsets 
 - **Datasets.md** - Notes on some datasets or tools to import datasets available on Open Exchange for easy install 
 
