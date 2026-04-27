@@ -1,7 +1,7 @@
 Class BusinessAnalysis.Interop.Msg.FileRequest Extends Ens.Request
 {
 
-Property FilePath As %String;
+Property FilePath As %String (MAXLEN = "");
 
 Property AnalysisTypes As list Of %String;
 
