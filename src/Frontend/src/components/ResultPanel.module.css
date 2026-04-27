@@ -1,0 +1,68 @@
+.panel {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.5rem;
+  background: #0f172a;
+  color: #fff;
+}
+
+.panelIcon {
+  font-size: 1.2rem;
+}
+
+.panelHeader h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.content {
+  padding: 1.5rem 1.75rem;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: #1e293b;
+}
+
+.content h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 1.25rem 0 0.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.content h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e40af;
+  margin: 1rem 0 0.4rem;
+}
+
+.content hr {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin: 1.25rem 0;
+}
+
+.content li {
+  margin: 0.35rem 0 0.35rem 1.2rem;
+  list-style: disc;
+}
+
+.content p {
+  margin: 0.4rem 0;
+}
+
+.content strong {
+  color: #0f172a;
+  font-weight: 700;
+}
