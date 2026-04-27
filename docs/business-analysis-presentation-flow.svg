@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="810" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+  <title id="title">Business Analysis Agentic Interoperability Flow</title>
+  <desc id="desc">Presentation diagram for the BusinessAnalysis workflow from REST dispatch into an IRIS interoperability production and future LLM agent analysis.</desc>
+  <defs>
+    <style>
+      .canvas { fill: #fbfcfe; }
+      .header { fill: #172033; }
+      .headerSub { fill: #5a6a80; }
+      .lane { fill: #f2f6fb; stroke: #d4dfec; stroke-width: 2; rx: 18; }
+      .laneTitle { font: 700 15px Arial, sans-serif; fill: #4c5e74; letter-spacing: .5px; }
+      .card { fill: #ffffff; stroke: #becce0; stroke-width: 2; rx: 14; }
+      .dispatch { fill: #eaf3ff; stroke: #477fb6; }
+      .message { fill: #fff6e3; stroke: #c58a2f; }
+      .service { fill: #eef9f1; stroke: #4d9466; }
+      .operation { fill: #f3effc; stroke: #8564bd; }
+      .agent { fill: #fff1f1; stroke: #c85d62; stroke-dasharray: 8 6; }
+      .titleText { font: 700 30px Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 400 16px Arial, sans-serif; fill: #5a6a80; }
+      .stepNum { font: 700 18px Arial, sans-serif; fill: #ffffff; }
+      .cardTitle { font: 700 18px Arial, sans-serif; fill: #172033; }
+      .className { font: 400 13px Consolas, monospace; fill: #41526a; }
+      .body { font: 400 14px Arial, sans-serif; fill: #405066; }
+      .note { font: 700 13px Arial, sans-serif; fill: #4c5e74; }
+      .pill { fill: #172033; rx: 14; }
+      .arrow { stroke: #2f4056; stroke-width: 3; fill: none; marker-end: url(#arrow); }
+      .returnArrow { stroke: #4d9466; stroke-width: 3; fill: none; marker-end: url(#arrowGreen); stroke-dasharray: 9 7; }
+    </style>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,8 L11,4 z" fill="#2f4056"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,8 L11,4 z" fill="#4d9466"/>
+    </marker>
+  </defs>
+
+  <rect class="canvas" width="1440" height="810"/>
+
+  <text class="titleText" x="70" y="70">Business Analysis Agentic Workflow</text>
+  <text class="subtitle" x="70" y="100">A lightweight REST request enters IRIS interoperability, becomes a typed message, and is prepared for LLM-driven analysis.</text>
+
+  <rect class="lane" x="70" y="150" width="300" height="520"/>
+  <text class="laneTitle" x="98" y="190">ENTRYPOINT</text>
+
+  <rect class="lane" x="410" y="150" width="300" height="520"/>
+  <text class="laneTitle" x="438" y="190">MESSAGE CONTRACT</text>
+
+  <rect class="lane" x="750" y="150" width="300" height="520"/>
+  <text class="laneTitle" x="778" y="190">INTEROPERABILITY</text>
+
+  <rect class="lane" x="1090" y="150" width="280" height="520"/>
+  <text class="laneTitle" x="1118" y="190">ANALYSIS</text>
+
+  <rect class="card dispatch" x="105" y="245" width="230" height="190"/>
+  <rect class="pill" x="129" y="269" width="34" height="28"/>
+  <text class="stepNum" x="140" y="290">1</text>
+  <text class="cardTitle" x="129" y="328">REST Dispatch</text>
+  <text class="className" x="129" y="356">BusinessAnalysis.Dispatch</text>
+  <text class="body" x="129" y="390">Accepts POST /readcsv</text>
+  <text class="body" x="129" y="416">Reads filepath and analysis types</text>
+
+  <rect class="card message" x="445" y="245" width="230" height="190"/>
+  <rect class="pill" x="469" y="269" width="34" height="28"/>
+  <text class="stepNum" x="480" y="290">2</text>
+  <text class="cardTitle" x="469" y="328">Typed Request</text>
+  <text class="className" x="469" y="356">FileRequest</text>
+  <text class="body" x="469" y="390">FilePath</text>
+  <text class="body" x="469" y="416">AnalysisTypes list</text>
+
+  <rect class="card service" x="785" y="220" width="230" height="160"/>
+  <rect class="pill" x="809" y="244" width="34" height="28"/>
+  <text class="stepNum" x="820" y="265">3</text>
+  <text class="cardTitle" x="809" y="303">Business Service</text>
+  <text class="className" x="809" y="331">BS_InboundFile</text>
+  <text class="body" x="809" y="362">Validates and forwards request</text>
+
+  <rect class="card operation" x="785" y="455" width="230" height="160"/>
+  <rect class="pill" x="809" y="479" width="34" height="28"/>
+  <text class="stepNum" x="820" y="500">4</text>
+  <text class="cardTitle" x="809" y="538">Business Operation</text>
+  <text class="className" x="809" y="566">BO_AnalyzeFile</text>
+  <text class="body" x="809" y="597">Reads file and builds prompt</text>
+
+  <rect class="card agent" x="1125" y="312" width="210" height="190"/>
+  <rect class="pill" x="1149" y="336" width="34" height="28"/>
+  <text class="stepNum" x="1160" y="357">5</text>
+  <text class="cardTitle" x="1149" y="395">LLM Agent</text>
+  <text class="className" x="1149" y="423">BusinessAnalysis.Agent</text>
+  <text class="body" x="1149" y="457">Future call target</text>
+  <text class="body" x="1149" y="483">Receives file content + analysis plan</text>
+
+  <path class="arrow" d="M335 340 H435"/>
+  <text class="note" x="364" y="324">JSON body</text>
+
+  <path class="arrow" d="M675 340 H775"/>
+  <text class="note" x="704" y="324">ProcessInput</text>
+
+  <path class="arrow" d="M900 380 V445"/>
+  <text class="note" x="917" y="417">SendRequestSync</text>
+
+  <path class="arrow" d="M1015 535 C1080 535 1072 407 1115 407"/>
+  <text class="note" x="1036" y="514">prompt</text>
+
+  <path class="returnArrow" d="M1125 465 C1010 705 250 710 220 445"/>
+  <text class="note" x="604" y="700">response returns through operation, service, and dispatch</text>
+
+  <rect x="128" y="555" width="184" height="56" rx="12" fill="#ffffff" stroke="#d4dfec" stroke-width="2"/>
+  <text class="className" x="148" y="580">{"filepath": "..."}</text>
+  <text class="className" x="148" y="603">{"AnalysisTypes": [...]}</text>
+
+  <rect x="460" y="555" width="200" height="56" rx="12" fill="#ffffff" stroke="#d4dfec" stroke-width="2"/>
+  <text class="body" x="480" y="581">Chained analysis types become</text>
+  <text class="body" x="480" y="604">prompt instructions</text>
+</svg>
