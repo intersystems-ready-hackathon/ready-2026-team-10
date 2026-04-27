@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="760" viewBox="0 0 1320 760" role="img" aria-labelledby="title desc">
+  <title id="title">BusinessAnalysis Dispatch to Interoperability Production Workflow</title>
+  <desc id="desc">Diagram showing POST readcsv requests flowing from BusinessAnalysis.Dispatch to the adapterless business service, business operation, future agent prompt, and JSON response.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f7f9fc; }
+      .panel { fill: #ffffff; stroke: #c9d4e5; stroke-width: 2; rx: 12; }
+      .production { fill: #eef6ff; stroke: #7aa7d9; stroke-width: 2; rx: 14; }
+      .box { fill: #ffffff; stroke: #2d5f88; stroke-width: 2; rx: 10; }
+      .message { fill: #fff8ea; stroke: #b9832f; stroke-width: 2; rx: 10; }
+      .future { fill: #f4eefc; stroke: #8a63bd; stroke-width: 2; rx: 10; stroke-dasharray: 8 6; }
+      .response { fill: #edf8f1; stroke: #43875b; stroke-width: 2; rx: 10; }
+      .error { fill: #fff0f0; stroke: #c45c5c; stroke-width: 2; rx: 10; }
+      .title { font: 700 28px Arial, sans-serif; fill: #172033; }
+      .subtitle { font: 400 15px Arial, sans-serif; fill: #526176; }
+      .label { font: 700 16px Arial, sans-serif; fill: #172033; }
+      .small { font: 400 13px Arial, sans-serif; fill: #3f4d61; }
+      .mono { font: 400 13px Consolas, monospace; fill: #26364a; }
+      .arrow { stroke: #34465c; stroke-width: 2.4; fill: none; marker-end: url(#arrowhead); }
+      .arrowReturn { stroke: #43875b; stroke-width: 2.4; fill: none; marker-end: url(#arrowheadGreen); stroke-dasharray: 7 6; }
+      .arrowError { stroke: #c45c5c; stroke-width: 2.2; fill: none; marker-end: url(#arrowheadRed); stroke-dasharray: 6 5; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#34465c"/>
+    </marker>
+    <marker id="arrowheadGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#43875b"/>
+    </marker>
+    <marker id="arrowheadRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#c45c5c"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1320" height="760"/>
+
+  <text class="title" x="48" y="58">BusinessAnalysis Interoperability Workflow</text>
+  <text class="subtitle" x="48" y="84">Current communication path from REST dispatch to the InterSystems IRIS interoperability production.</text>
+
+  <rect class="panel" x="48" y="124" width="230" height="150"/>
+  <text class="label" x="72" y="158">Client</text>
+  <text class="mono" x="72" y="190">POST /readcsv</text>
+  <text class="small" x="72" y="219">JSON body</text>
+  <text class="mono" x="72" y="242">filepath</text>
+  <text class="mono" x="150" y="242">AnalysisTypes[]</text>
+
+  <rect class="box" x="356" y="124" width="260" height="150"/>
+  <text class="label" x="380" y="158">BusinessAnalysis.Dispatch</text>
+  <text class="mono" x="380" y="190">ReadCSV()</text>
+  <text class="small" x="380" y="219">Parses request JSON</text>
+  <text class="small" x="380" y="242">Builds FileRequest</text>
+
+  <rect class="message" x="356" y="334" width="260" height="160"/>
+  <text class="label" x="380" y="368">FileRequest</text>
+  <text class="mono" x="380" y="401">BusinessAnalysis.Interop.Msg</text>
+  <text class="mono" x="380" y="428">.FileRequest</text>
+  <text class="small" x="380" y="461">FilePath</text>
+  <text class="small" x="468" y="461">AnalysisTypes list</text>
+
+  <rect class="production" x="696" y="108" width="560" height="430"/>
+  <text class="label" x="728" y="144">BusinessAnalysis.Interop.Production</text>
+  <text class="small" x="728" y="170">Configured production items: BS_InboundFile and BO_AnalyzeFile</text>
+
+  <rect class="box" x="732" y="218" width="220" height="150"/>
+  <text class="label" x="756" y="252">BS_InboundFile</text>
+  <text class="mono" x="756" y="282">Ens.BusinessService</text>
+  <text class="small" x="756" y="313">Adapterless service</text>
+  <text class="small" x="756" y="337">Validates FileRequest</text>
+
+  <rect class="box" x="1004" y="218" width="220" height="150"/>
+  <text class="label" x="1028" y="252">BO_AnalyzeFile</text>
+  <text class="mono" x="1028" y="282">Ens.BusinessOperation</text>
+  <text class="small" x="1028" y="313">MessageMap handler</text>
+  <text class="small" x="1028" y="337">AnalyzeFile()</text>
+
+  <rect class="future" x="864" y="428" width="300" height="74"/>
+  <text class="label" x="888" y="459">Future LLM Agent Call</text>
+  <text class="small" x="888" y="484">File content + AnalysisTypes prompt</text>
+
+  <path class="arrow" d="M278 199 H348"/>
+  <text class="small" x="294" y="186">HTTP JSON</text>
+
+  <path class="arrow" d="M486 274 V326"/>
+  <text class="small" x="502" y="307">create</text>
+
+  <path class="arrow" d="M616 414 C658 414 654 293 724 293"/>
+  <text class="small" x="640" y="383">ProcessInput()</text>
+
+  <path class="arrow" d="M952 293 H996"/>
+  <text class="small" x="958" y="278">SendRequestSync()</text>
+
+  <path class="arrow" d="M1114 368 V420"/>
+  <text class="small" x="1130" y="397">build prompt</text>
+
+  <path class="arrowReturn" d="M356 424 C238 424 172 326 162 282"/>
+  <text class="small" x="216" y="405">JSON response</text>
+
+  <rect class="panel" x="48" y="604" width="568" height="100"/>
+  <text class="label" x="72" y="638">Request Contract</text>
+  <text class="mono" x="72" y="668">{ "filepath": "sample.csv", "AnalysisTypes": ["summary", "risk"] }</text>
+</svg>
