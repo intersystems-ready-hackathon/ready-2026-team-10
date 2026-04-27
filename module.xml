@@ -8,6 +8,7 @@
       <Packaging>module</Packaging>
       <SourcesRoot>src</SourcesRoot>
       <Resource Name="Sample.PKG"/>
+      <Resource Name="BusinessAnalysis.PKG"/>
       <Invoke Method="Run" Class="Sample.MCPSetup"/>
     </Module>
   </Document>
