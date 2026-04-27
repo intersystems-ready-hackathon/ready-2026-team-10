@@ -1,4 +1,4 @@
-Class IRIS.Agent Extends %AI.Agent
+Class BusinessAnalysis.Agent Extends %AI.Agent
 {
     /// LLM Provider
     Parameter PROVIDER = "openai";
@@ -7,7 +7,7 @@ Class IRIS.Agent Extends %AI.Agent
     Parameter MODEL = "gpt-5-nano";
 
     /// Toolsets that the agent can use
-    Parameter TOOLSETS = "IRIS.ToolSet";
+    Parameter TOOLSETS = "BusinessAnalysis.ToolSet";
     
     
     /// System Prompt
