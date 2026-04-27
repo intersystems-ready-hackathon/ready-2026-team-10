@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="810" viewBox="0 0 1440 810" role="img" aria-labelledby="title desc">
+  <title id="title">AI Business Analysis Problem Overview</title>
+  <desc id="desc">High-level presentation diagram explaining that business teams have CSV data but need fast targeted analysis, and this project turns files plus selected analysis types into clear AI-generated business insights.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .headline { font: 700 36px Arial, sans-serif; fill: #172033; }
+      .subhead { font: 400 18px Arial, sans-serif; fill: #536176; }
+      .sectionTitle { font: 700 18px Arial, sans-serif; fill: #172033; }
+      .body { font: 400 15px Arial, sans-serif; fill: #425168; }
+      .small { font: 400 13px Arial, sans-serif; fill: #5d6c80; }
+      .mono { font: 400 13px Consolas, monospace; fill: #35455a; }
+      .panel { fill: #ffffff; stroke: #d0dae8; stroke-width: 2; rx: 18; }
+      .problem { fill: #fff1f1; stroke: #c95f65; stroke-width: 2; rx: 18; }
+      .input { fill: #fff8e8; stroke: #c78b2d; stroke-width: 2; rx: 18; }
+      .engine { fill: #eef6ff; stroke: #4b82b9; stroke-width: 2; rx: 22; }
+      .output { fill: #eef9f1; stroke: #4f9566; stroke-width: 2; rx: 18; }
+      .pill { fill: #172033; rx: 16; }
+      .pillText { font: 700 13px Arial, sans-serif; fill: #ffffff; }
+      .arrow { stroke: #31445b; stroke-width: 3; fill: none; marker-end: url(#arrowHead); }
+      .softArrow { stroke: #6a7c92; stroke-width: 2.4; fill: none; marker-end: url(#arrowSoft); stroke-dasharray: 8 7; }
+      .iconStroke { stroke: #172033; stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .accentBlue { fill: #4b82b9; }
+      .accentGold { fill: #c78b2d; }
+      .accentGreen { fill: #4f9566; }
+      .accentRed { fill: #c95f65; }
+    </style>
+    <marker id="arrowHead" markerWidth="12" markerHeight="12" refX="10" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,8 L11,4 z" fill="#31445b"/>
+    </marker>
+    <marker id="arrowSoft" markerWidth="11" markerHeight="11" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,8 L10,4 z" fill="#6a7c92"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1440" height="810"/>
+
+  <text class="headline" x="72" y="78">From Raw Business Files to Focused AI Insights</text>
+  <text class="subhead" x="72" y="112">Team 10 AI Business Analysis helps users upload company CSV data, choose analysis goals, and receive structured summaries.</text>
+
+  <rect class="problem" x="72" y="175" width="300" height="390"/>
+  <circle class="accentRed" cx="112" cy="220" r="18"/>
+  <text class="pillText" x="106" y="225">1</text>
+  <text class="sectionTitle" x="96" y="270">The Problem</text>
+  <text class="body" x="96" y="310">Business data often starts as</text>
+  <text class="body" x="96" y="334">large CSV files that are hard</text>
+  <text class="body" x="96" y="358">to inspect manually.</text>
+  <line x1="96" y1="388" x2="348" y2="388" stroke="#f2c5c8" stroke-width="2"/>
+  <text class="body" x="96" y="426">Teams need quick answers:</text>
+  <text class="small" x="116" y="460">Are there anomalies?</text>
+  <text class="small" x="116" y="488">What should be audited?</text>
+  <text class="small" x="116" y="516">What do the statistics say?</text>
+
+  <rect class="input" x="450" y="175" width="300" height="390"/>
+  <circle class="accentGold" cx="490" cy="220" r="18"/>
+  <text class="pillText" x="484" y="225">2</text>
+  <text class="sectionTitle" x="474" y="270">User Input</text>
+  <text class="body" x="474" y="310">The user provides a file and</text>
+  <text class="body" x="474" y="334">selects the analysis types</text>
+  <text class="body" x="474" y="358">they want the AI to perform.</text>
+  <rect x="484" y="405" width="210" height="78" rx="10" fill="#ffffff" stroke="#e4c58f" stroke-width="2"/>
+  <text class="mono" x="506" y="434">company_data.csv</text>
+  <text class="small" x="506" y="462">Audit, anomalies, statistics</text>
+
+  <rect class="engine" x="828" y="145" width="300" height="450"/>
+  <circle class="accentBlue" cx="868" cy="190" r="18"/>
+  <text class="pillText" x="862" y="195">3</text>
+  <text class="sectionTitle" x="852" y="240">AI Business Analyzer</text>
+  <text class="body" x="852" y="280">IRIS receives the request,</text>
+  <text class="body" x="852" y="304">routes it through an</text>
+  <text class="body" x="852" y="328">interoperability production,</text>
+  <text class="body" x="852" y="352">and prepares an LLM prompt.</text>
+  <g transform="translate(895 405)">
+    <rect x="0" y="0" width="130" height="92" rx="16" fill="#ffffff" stroke="#b7d1ec" stroke-width="2"/>
+    <path class="iconStroke" d="M36 48 h58"/>
+    <path class="iconStroke" d="M65 19 v58"/>
+    <circle cx="65" cy="48" r="38" fill="none" stroke="#4b82b9" stroke-width="3"/>
+  </g>
+
+  <rect class="output" x="1206" y="175" width="162" height="390"/>
+  <circle class="accentGreen" cx="1246" cy="220" r="18"/>
+  <text class="pillText" x="1240" y="225">4</text>
+  <text class="sectionTitle" x="1230" y="270">Output</text>
+  <text class="body" x="1230" y="310">Structured</text>
+  <text class="body" x="1230" y="334">AI summaries</text>
+  <text class="body" x="1230" y="358">by requested</text>
+  <text class="body" x="1230" y="382">analysis type.</text>
+  <line x1="1230" y1="416" x2="1344" y2="416" stroke="#b9dfc4" stroke-width="2"/>
+  <text class="small" x="1230" y="452">Audit findings</text>
+  <text class="small" x="1230" y="480">Anomaly flags</text>
+  <text class="small" x="1230" y="508">Statistics</text>
+
+  <path class="arrow" d="M372 370 H440"/>
+  <path class="arrow" d="M750 370 H818"/>
+  <path class="arrow" d="M1128 370 H1196"/>
+
+  <rect class="panel" x="182" y="635" width="1076" height="90"/>
+  <text class="sectionTitle" x="214" y="674">Core Value</text>
+  <text class="body" x="214" y="704">The project turns spreadsheet-heavy business review into a guided AI workflow: pick a file, choose the questions, and get concise analysis sections back.</text>
+
+  <path class="softArrow" d="M978 595 C978 632 930 646 872 646"/>
+  <text class="small" x="888" y="626">LLM-ready prompt combines file content and selected analysis goals</text>
+</svg>
